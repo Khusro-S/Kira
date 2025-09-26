@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 // import { useQuery } from "convex/react";
 // import { api } from "../../convex/_generated/api";
 import { useState } from "react";
-import InsightsView from "../components/InsightsView";
 import CalendarView from "../components/CalendarView";
+import InsightsView from "../components/insights/InsightsView";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -59,12 +59,12 @@ export default function Dashboard() {
               </div>
               {/* Tab Navigation */}
               <div>
-                <div className="flex space-x-1 bg-gray-100 p-1 rounded-xl">
+                <div className="flex space-x-1 bg-gray-50 p-1 rounded-xl">
                   <button
                     onClick={() => setActiveTab("calendar")}
                     className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                       activeTab === "calendar"
-                        ? "bg-white text-pink-600 shadow-sm"
+                        ? "bg-pink-500 text-white shadow-sm"
                         : "text-gray-600 hover:text-gray-900"
                     }`}
                   >
@@ -74,7 +74,7 @@ export default function Dashboard() {
                     onClick={() => setActiveTab("insights")}
                     className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                       activeTab === "insights"
-                        ? "bg-white text-pink-600 shadow-sm"
+                        ? "bg-pink-500 text-white shadow-sm"
                         : "text-gray-600 hover:text-gray-900"
                     }`}
                   >

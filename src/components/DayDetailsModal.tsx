@@ -155,15 +155,15 @@ export default function DayDetailsModal({
         onClick={onClose}
       >
         <div
-          className="bg-white border border-solid border-black rounded-2xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+          className="bg-white border border-solid border-gray-300 shadow-2xl rounded-2xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-semibold text-gray-900">
               {date.toLocaleDateString("en-US", {
-                weekday: "long",
+                weekday: "short",
                 year: "numeric",
-                month: "long",
+                month: "short",
                 day: "numeric",
               })}
             </h3>
@@ -175,7 +175,7 @@ export default function DayDetailsModal({
             </button>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Menstrual Flow */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -189,52 +189,46 @@ export default function DayDetailsModal({
               <div className="grid grid-cols-4 gap-3">
                 <button
                   onClick={() => setFlow("light")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`px-4 rounded-xl border transition-all ${
                     flow === "light"
-                      ? "border-pink-300 bg-pink-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-3 h-3 bg-pink-200 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Light
-                    </span>
+                    <span className="text-sm font-medium">Light</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setFlow("medium")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     flow === "medium"
-                      ? "border-pink-400 bg-pink-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-3 h-3 bg-pink-400 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Medium
-                    </span>
+                    <span className="text-sm font-medium">Medium</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setFlow("heavy")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     flow === "heavy"
-                      ? "border-red-500 bg-red-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Heavy
-                    </span>
+                    <span className="text-sm font-medium">Heavy</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setFlow("none")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     flow === "none"
                       ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
@@ -250,7 +244,7 @@ export default function DayDetailsModal({
                 </button>
               </div>
             </div>
-
+            <Divider />
             {/* Mood */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -262,37 +256,33 @@ export default function DayDetailsModal({
               <div className="grid grid-cols-5 gap-3">
                 <button
                   onClick={() => setMood("great")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     mood === "great"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-2xl">😊</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      Great
-                    </span>
+                    <span className="text-sm font-medium ">Great</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setMood("good")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     mood === "good"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-2xl">🙂</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      Good
-                    </span>
+                    <span className="text-sm font-medium ">Good</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setMood("okay")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     mood === "okay"
                       ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
@@ -309,37 +299,33 @@ export default function DayDetailsModal({
                 </button>
                 <button
                   onClick={() => setMood("low")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     mood === "low"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-2xl">😔</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      Low
-                    </span>
+                    <span className="text-sm font-medium">Low</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setMood("irritable")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     mood === "irritable"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex flex-col items-center space-y-2">
                     <span className="text-2xl">😤</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      Irritable
-                    </span>
+                    <span className="text-sm font-medium ">Irritable</span>
                   </div>
                 </button>
               </div>
             </div>
-
+            <Divider />
             {/* Energy Level */}
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -353,22 +339,20 @@ export default function DayDetailsModal({
               <div className="grid grid-cols-3 gap-3">
                 <button
                   onClick={() => setEnergy("high")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     energy === "high"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      High
-                    </span>
+                    <span className="text-sm font-medium">High</span>
                   </div>
                 </button>
                 <button
                   onClick={() => setEnergy("medium")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     energy === "medium"
                       ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
@@ -385,22 +369,20 @@ export default function DayDetailsModal({
                 </button>
                 <button
                   onClick={() => setEnergy("low")}
-                  className={`p-4 rounded-xl border-2 transition-all ${
+                  className={`p-4 rounded-xl border transition-all ${
                     energy === "low"
-                      ? "border-gray-400 bg-gray-50"
+                      ? "border-gray-400 bg-gray-900 text-white"
                       : "border-gray-200 bg-white hover:border-gray-300"
                   }`}
                 >
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Low
-                    </span>
+                    <span className="text-sm font-medium">Low</span>
                   </div>
                 </button>
               </div>
             </div>
-
+            <Divider />
             {/* Sleep Hours */}
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -433,32 +415,66 @@ export default function DayDetailsModal({
               </div>
             </div>
 
+            <Divider />
             {/* Symptoms */}
-            {symptoms.length > 0 && (
-              <div>
-                <h4 className="font-medium text-gray-900 mb-3">
-                  Selected Symptoms
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {symptoms.map((symptom) => (
-                    <span
-                      key={symptom}
-                      className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
-                    >
-                      {symptom}
-                    </span>
-                  ))}
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-6 h-6 flex items-center justify-center">
+                  🩹
                 </div>
+                <h4 className="text-lg font-medium text-gray-900">Symptoms</h4>
               </div>
-            )}
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  "Cramps",
+                  "Bloating",
+                  "Headache",
+                  "Mood swings",
+                  "Fatigue",
+                  "Nausea",
+                  "Back pain",
+                  "Acne",
+                  "Food cravings",
+                  "Dizziness",
+                ].map((symptom) => (
+                  <button
+                    key={symptom}
+                    onClick={() => {
+                      if (symptoms.includes(symptom)) {
+                        setSymptoms(symptoms.filter((s) => s !== symptom));
+                      } else {
+                        setSymptoms([...symptoms, symptom]);
+                      }
+                    }}
+                    className={`p-3 rounded-xl text-left border transition-all duration-200 ${
+                      symptoms.includes(symptom)
+                        ? "border-gray-400 bg-gray-900 text-white"
+                        : "border-gray-200 bg-white hover:border-gray-300"
+                    }`}
+                  >
+                    {symptom}
+                  </button>
+                ))}
+              </div>
+            </div>
 
+            <Divider />
             {/* Notes */}
-            {notes && (
-              <div>
-                <h4 className="font-medium text-gray-900 mb-3">Notes</h4>
-                <p className="text-gray-600 text-sm">{notes}</p>
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-6 h-6 flex items-center justify-center">
+                  📝
+                </div>
+                <h4 className="text-lg font-medium text-gray-900">Notes</h4>
               </div>
-            )}
+              <textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Any additional notes about how you're feeling today..."
+                className="w-full p-3 border border-gray-200 rounded-xl"
+                rows={3}
+              />
+            </div>
 
             {/* Action Buttons */}
             <div className="flex space-x-3 pt-6 border-t border-gray-200">
@@ -490,4 +506,8 @@ export default function DayDetailsModal({
       </div>
     </div>
   );
+}
+
+function Divider() {
+  return <div className="border-t border-gray-200 my-6"></div>;
 }
