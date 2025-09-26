@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
-import { useQuery } from "convex/react";
-import { api } from "../../convex/_generated/api";
+// import { useQuery } from "convex/react";
+// import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import InsightsView from "../components/InsightsView";
 import CalendarView from "../components/CalendarView";
@@ -13,7 +13,7 @@ export default function Dashboard() {
   );
 
   // This query will automatically be authenticated and only return this user's data
-  const cycles = useQuery(api.cycles.getUserCycles);
+  // const cycles = useQuery(api.cycles.getUserCycles);
 
   return (
     <>
@@ -85,11 +85,7 @@ export default function Dashboard() {
             </div>
 
             {/* Tab Content */}
-            {activeTab === "calendar" ? (
-              <CalendarView />
-            ) : (
-              <InsightsView cycles={cycles} />
-            )}
+            {activeTab === "calendar" ? <CalendarView /> : <InsightsView />}
           </main>
         </div>
       </SignedIn>
