@@ -56,6 +56,7 @@ export default function CalendarView() {
         <DayDetailsModal
           date={selectedDate}
           onClose={() => setSelectedDate(null)}
+          onNavigate={(newDate: Date) => setSelectedDate(newDate)}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 
@@ -29,9 +29,11 @@ const sliderStyles = `
 export default function DayDetailsModal({
   date,
   onClose,
+  onNavigate,
 }: {
   date: Date;
   onClose: () => void;
+  onNavigate?: (newDate: Date) => void;
 }) {
   // Helper function to format date in local timezone (YYYY-MM-DD)
   const formatDateString = (date: Date) => {
@@ -62,6 +64,7 @@ export default function DayDetailsModal({
   const [notes, setNotes] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Check if there's existing data
   const hasExistingData =
@@ -73,7 +76,7 @@ export default function DayDetailsModal({
       dailyData.symptoms?.length ||
       dailyData.notes);
 
-  // Load existing data when available
+  // Load existing data when available or reset when navigating to new date
   useEffect(() => {
     if (dailyData) {
       setFlow(dailyData.flow || null);
@@ -82,8 +85,40 @@ export default function DayDetailsModal({
       setSleep(dailyData.sleep || 7.5);
       setSymptoms(dailyData.symptoms || []);
       setNotes(dailyData.notes || "");
+    } else {
+      // Reset form state when no data exists for the current date
+      setFlow(null);
+      setMood(null);
+      setEnergy(null);
+      setSleep(7.5);
+      setSymptoms([]);
+      setNotes("");
     }
-  }, [dailyData]);
+
+    // Scroll modal content to top when date changes (only if not already at top)
+    const modalContent = document.querySelector(".modal-content");
+    if (modalContent && modalContent.scrollTop > 0) {
+      modalContent.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [dailyData, dateString]); // Include dateString to trigger reset when date changes
+
+  // Animation control - show modal after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 10); // Small delay to ensure transition works
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle modal close with animation
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    // Wait for animation to complete before actually closing
+    setTimeout(() => {
+      onClose();
+    }, 200); // Match the transition duration
+  }, [onClose]);
 
   // Save daily tracking data
   const handleSave = async () => {
@@ -103,7 +138,7 @@ export default function DayDetailsModal({
       console.error("Failed to save daily tracking:", error);
     } finally {
       setIsSaving(false);
-      onClose();
+      handleClose();
     }
   };
 
@@ -113,20 +148,54 @@ export default function DayDetailsModal({
     // Prevent background scroll
     document.body.style.overflow = "hidden";
 
-    // Handle escape key
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
+    // Check if date is in the future
+    const isFuture = (checkDate: Date) => {
+      const today = new Date();
+      today.setHours(23, 59, 59, 999);
+      return checkDate > today;
+    };
+
+    // Navigation helpers inside useEffect to avoid dependency issues
+    const handlePreviousDay = () => {
+      const previousDay = new Date(date);
+      previousDay.setDate(previousDay.getDate() - 1);
+      if (onNavigate) {
+        onNavigate(previousDay);
       }
     };
 
-    document.addEventListener("keydown", handleEscape);
+    const handleNextDay = () => {
+      const nextDay = new Date(date);
+      nextDay.setDate(nextDay.getDate() + 1);
+      if (onNavigate) {
+        onNavigate(nextDay);
+      }
+    };
+
+    // Handle escape key and arrow navigation
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      } else if (e.key === "ArrowLeft" && onNavigate) {
+        e.preventDefault();
+        handlePreviousDay();
+      } else if (e.key === "ArrowRight" && onNavigate) {
+        const nextDay = new Date(date);
+        nextDay.setDate(nextDay.getDate() + 1);
+        if (!isFuture(nextDay)) {
+          e.preventDefault();
+          handleNextDay();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "unset";
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, onNavigate, date, handleClose]);
 
   const handleDelete = async () => {
     if (!dailyData) return;
@@ -137,7 +206,7 @@ export default function DayDetailsModal({
       await deleteDailyTracking({
         date: dateString,
       });
-      onClose();
+      handleClose();
     } catch (error) {
       console.error("Error deleting daily tracking:", error);
     } finally {
@@ -151,29 +220,127 @@ export default function DayDetailsModal({
       <style>{sliderStyles}</style>
 
       <div
-        className="fixed inset-0 bg-white/30 backdrop-blur-sm flex items-center justify-center z-50"
-        onClick={onClose}
+        className={`fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50 transition-all duration-200 ${
+          isVisible
+            ? "bg-white/30 opacity-100 scale-100"
+            : "bg-white/0 opacity-0 scale-0"
+        }`}
+        onClick={handleClose}
       >
         <div
-          className="bg-white border border-solid border-gray-300 shadow-2xl rounded-2xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto"
+          className="bg-white border border-solid border-gray-300 shadow-2xl rounded-2xl px-5 py-4 max-w-2xl w-full mx-4 max-h-[92vh] overflow-y-auto modal-content transition-all duration-200 "
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">
-              {date.toLocaleDateString("en-US", {
-                weekday: "short",
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              })}
-            </h3>
+          <div className="flex justify-between items-center">
+            {/* Navigation Controls */}
+            {onNavigate &&
+              (() => {
+                const nextDay = new Date(date);
+                nextDay.setDate(nextDay.getDate() + 1);
+                const today = new Date();
+                today.setHours(23, 59, 59, 999);
+                const isNextDayDisabled = nextDay > today;
+
+                return (
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => {
+                        const previousDay = new Date(date);
+                        previousDay.setDate(previousDay.getDate() - 1);
+                        onNavigate(previousDay);
+                      }}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 text-gray-600 hover:text-gray-800"
+                      title="Previous day (←)"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => {
+                        if (!isNextDayDisabled) {
+                          onNavigate(nextDay);
+                        }
+                      }}
+                      disabled={isNextDayDisabled}
+                      className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 text-gray-600 hover:text-gray-800 disabled:text-gray-300 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+                      title="Next day (→)"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                );
+              })()}
+
+            {/* Date Title */}
+            <div className="flex-1 text-center">
+              <h3 className="text-lg font-semibold text-gray-900">
+                {date.toLocaleDateString("en-US", {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </h3>
+              {/* Add "Today" indicator */}
+              {date.toDateString() === new Date().toDateString() && (
+                <span className="text-sm text-pink-600 font-medium">Today</span>
+              )}
+            </div>
+
+            {/* Close Button */}
             <button
-              onClick={onClose}
-              className="p-1 hover:bg-gray-100 w-8 h-8 flex items-center justify-center rounded-full"
+              onClick={handleClose}
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 text-gray-600 hover:text-gray-800"
+              title="Close (Esc)"
             >
-              ✕
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
           </div>
+
+          {/* Navigation hint */}
+          {onNavigate && (
+            <div className="text-center ">
+              <p className="text-xs text-gray-500 my-2">
+                Use &larr; &rarr; arrows or buttons above to navigate between
+                days
+              </p>
+            </div>
+          )}
 
           <div className="space-y-6">
             {/* Menstrual Flow */}
@@ -471,7 +638,7 @@ export default function DayDetailsModal({
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Any additional notes about how you're feeling today..."
-                className="w-full p-3 border border-gray-200 rounded-xl"
+                className="w-full p-3 border border-gray-200 rounded-xl placeholder:text-gray-400"
                 rows={3}
               />
             </div>
@@ -495,7 +662,7 @@ export default function DayDetailsModal({
                 </button>
               )}
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium rounded-xl transition-all duration-200"
               >
                 Cancel
