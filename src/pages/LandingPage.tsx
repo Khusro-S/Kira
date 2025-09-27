@@ -214,10 +214,11 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <span className="font-bold text-lg text-pink-500">Kira</span>
+            <div className="h-1 w-1 bg-gray-400"></div>
+            <p className="text-gray-400">
+              Empowering women through cycle awareness and health insights.
+            </p>
           </div>
-          <p className="text-gray-400">
-            Empowering women through cycle awareness and health insights.
-          </p>
         </div>
       </footer>
     </div>

@@ -3,13 +3,18 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
-import Auth from "./pages/Auth";
+import { useConvexAuth } from "convex/react";
+
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
-import Test from "./pages/Test";
+
+import Auth from "./pages/Auth";
 
 function App() {
+  const { isLoading, isAuthenticated } = useConvexAuth();
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -18,12 +23,25 @@ function App() {
           element={<LandingPage />}
           errorElement={<div>Error</div>}
         />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/auth"
+          element={!isAuthenticated ? <Auth /> : <Navigate to="/dashboard" />}
+        />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <Dashboard /> : <Navigate to="/auth" />}
+        />
       </>
     )
   );
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <>

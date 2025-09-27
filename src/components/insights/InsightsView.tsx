@@ -127,9 +127,11 @@ export default function InsightsView() {
         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
           Your Health Insights
         </h1>
-        <p className="text-sm sm:text-base text-gray-600">
-          Based on your last {rangeData.length} days of tracking
-        </p>
+        {rangeData.length !== 0 && (
+          <p className="text-sm sm:text-base text-gray-600">
+            Based on your last {rangeData.length} days of tracking
+          </p>
+        )}
       </div>
 
       {rangeData.length === 0 ? (

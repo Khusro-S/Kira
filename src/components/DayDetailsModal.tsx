@@ -79,9 +79,14 @@ export default function DayDetailsModal({
   // Load existing data when available or reset when navigating to new date
   useEffect(() => {
     if (dailyData) {
-      setFlow(dailyData.flow || null);
-      setMood(dailyData.mood || null);
-      setEnergy(dailyData.energy || null);
+      setFlow(
+        (dailyData.flow as "light" | "medium" | "heavy" | "none") || null
+      );
+      setMood(
+        (dailyData.mood as "great" | "good" | "okay" | "low" | "irritable") ||
+          null
+      );
+      setEnergy((dailyData.energy as "high" | "medium" | "low") || null);
       setSleep(dailyData.sleep || 7.5);
       setSymptoms(dailyData.symptoms || []);
       setNotes(dailyData.notes || "");
