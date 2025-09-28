@@ -11,9 +11,9 @@ export default function LandingPage() {
       <header className="px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
               Kira
-            </span>
+            </h1>
           </div>
           <nav className="min-w-[120px] flex justify-end">
             <SignedIn>
@@ -47,7 +47,7 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <main className="px-6 py-16">
+      <main className="px-6 py-13">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
             Track Your Cycle,
@@ -218,7 +218,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="px-6 py-8 bg-gradient-to-br from-pink-50 to-purple-50">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
+          <div className="flex items-center justify-center space-x-2">
             <span className="font-bold text-lg bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
               Kira
             </span>
