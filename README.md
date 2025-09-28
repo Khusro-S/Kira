@@ -1,8 +1,19 @@
 # 🌸 Kira - Menstrual Cycle Tracking App
 
+Kira is a modern, intuitive web application designed to help users track their menstrual cycles. Users manually enter their daily data `(flow intensity, mood, energy levels, sleep hours, symptoms, and personal notes)` through an intuitive interface, and the app transforms this information into beautiful, interactive charts and insights to help understand cycle patterns and overall wellbeing.
+
 🌟 **[Live Demo](https://kiira.netlify.app)** - Try the web app now!
 
-Kira is a modern, intuitive web application designed to help users track their menstrual cycles. Users manually enter their daily data `(flow intensity, mood, energy levels, sleep hours, symptoms, and personal notes)` through an intuitive interface, and the app transforms this information into beautiful, interactive charts and insights to help understand cycle patterns and overall wellbeing.
+🖥️ [Video Demo - Desktop]
+
+https://github.com/user-attachments/assets/d0e38ce1-1e6f-4151-bcfe-3af185843b52
+
+📱[Video Demo - Mobile]
+
+
+https://github.com/user-attachments/assets/99c54df5-4f0c-4e00-a96a-1a44a2e4bc0d
+
+
 
 ## 📋 Table of Contents
 
@@ -162,14 +173,6 @@ To run Kira locally on your machine:
 
 6. **Open your browser**:
    Navigate to `http://localhost:5173` to see the app
-
-## 🌟 Future Enhancements
-
-- **AI-Powered Insights**: Predictive analytics for cycle forecasting and pattern recognition
-- **Smart Reminders**: Personalized notifications based on cycle patterns
-- **Export Functionality**: PDF reports for medical appointments
-- **Integration**: Connect with fitness trackers and health apps for automatic sleep/activity data
-- **Community Features**: Anonymous insights and support (optional)
 
 ## 🤝 Contributing
 
