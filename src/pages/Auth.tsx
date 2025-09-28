@@ -76,7 +76,10 @@ export default function Auth() {
                   <span className="text-white font-bold text-2xl">K</span>
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                  Welcome to Kira
+                  Welcome to{" "}
+                  <span className="font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    Kira
+                  </span>
                 </h2>
                 <p className="text-gray-600 mb-6">
                   Ready to start tracking your cycle? Sign in or create your

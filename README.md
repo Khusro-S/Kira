@@ -1,75 +1,184 @@
-# React + TypeScript + Vite
+# 🌸 Kira - Menstrual Cycle Tracking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌟 **[Live Demo](https://kiira.netlify.app)** - Try the web app now!
 
-Currently, two official plugins are available:
+Kira is a modern, intuitive web application designed to help users track their menstrual cycles. Users manually enter their daily data `(flow intensity, mood, energy levels, sleep hours, symptoms, and personal notes)` through an intuitive interface, and the app transforms this information into beautiful, interactive charts and insights to help understand cycle patterns and overall wellbeing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Table of Contents
 
-## React Compiler
+- [Why This Data Matters](#-why-this-data-matters)
+- [Design Philosophy](#-design-philosophy)
+- [Technical Architecture](#-technical-architecture)
+- [App Features & Navigation Guide](#-app-features--navigation-guide)
+- [Security & Privacy](#-security--privacy)
+- [Data Structure](#-data-structure)
+- [Getting Started](#-getting-started)
+- [Local Development Setup](#-local-development-setup)
+- [Future Enhancements](#-future-enhancements)
+- [Contributing](#-contributing)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 📊 Why This Data Matters
 
-Note: This will impact Vite dev & build performances.
+Menstrual cycle tracking is crucial for:
+- **Health Awareness**: Understanding normal vs. abnormal patterns
+- **Symptom Management**: Identifying triggers and patterns in mood, energy, and physical symptoms
+- **Medical Communication**: Providing healthcare providers with accurate cycle data
+- **Personal Planning**: Predicting future cycles and planning around them
 
-## Expanding the ESLint configuration
+## 🎨 Design Philosophy
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### User Experience
+- **Minimalist Interface**: Clean, calming design using soft pink and purple gradients
+- **Intuitive Navigation**: Calendar-based interaction that feels natural
+- **Accessibility**: High contrast, readable typography, and clear visual hierarchy
+- **Mobile-First**: Responsive design optimized for daily mobile usage
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Visual Design Choices
+- **Color Palette**: Soft pinks and purples to create a welcoming, feminine aesthetic
+- **Typography**: Clean, modern fonts for excellent readability
+- **Icons & Graphics**: Simple, recognizable symbols for quick data entry
+- **Cards & Modals**: Organized information display with clear visual separation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Technical Architecture
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Frontend Stack
+- **React 19** with TypeScript for type safety and modern development
+- **Vite** for fast development and optimized builds
+- **Tailwind CSS** for utility-first styling and consistent design system
+- **React Router** for seamless navigation between pages
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Backend & Data
+- **Convex** as the backend-as-a-service platform for real-time data
+- **Clerk** for secure user authentication and user management
+- **Real-time Sync**: Instant updates across all user sessions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Key Technical Decisions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Convex over Traditional Backend**: Chosen for real-time data synchronization, serverless architecture, built-in database with TypeScript schema validation, automatic API generation, and zero-config deployment without managing servers
+2. **Clerk for Authentication**: Selected for enterprise-grade security, seamless social logins, user management dashboard, and excellent React integration without complex auth setup
+3. **TypeScript**: Ensures type safety and better developer experience
+4. **Component Architecture**: Modular, reusable components for maintainability
+5. **Responsive Design**: Mobile-first approach since most tracking happens on-the-go
+6. **Calendar-Centric UI**: Natural interaction pattern for date-based data
+
+## 📱 App Features & Navigation Guide
+
+### 1. Landing Page
+- **Welcome Interface**: Introduction to the app's purpose
+- **Sign Up/Sign In**: Secure authentication via Clerk
+- **Feature Overview**: Brief explanation of tracking capabilities
+
+### 2. Dashboard (Main App)
+The heart of the application with three main sections:
+
+#### Calendar View
+- **Monthly Calendar**: Visual representation of your cycle data
+- **Color-Coded Days**: Different colors indicate cycle phases and data availability
+- **Quick Navigation**: Easy month-to-month browsing
+- **Day Selection**: Click any day to view or add data
+
+#### Daily Tracking Modal
+When you click on a calendar day, you can log:
+- **Flow Intensity**: None, Light, Medium, Heavy
+- **Mood Tracking**: Great, Good, Okay, Low, Irritable
+- **Energy Levels**: High, Medium, Low
+- **Sleep Hours**: Numeric input for sleep duration
+- **Symptoms**: Multi-select from common symptoms (Cramps, Bloating, Headache, Mood swings, Fatigue, Nausea, Back pain, Acne, Food cravings, Dizziness)
+- **Personal Notes**: Free-text field for additional observations
+
+#### Insights Dashboard
+- **Cycle Overview**: Average cycle length and patterns
+- **Symptom Trends**: Visual charts showing symptom frequency over time
+- **Sleep Patterns**: Sleep duration trends and correlations
+- **Mood Analysis**: Mood patterns throughout different cycle phases
+
+## 🔐 Security & Privacy
+
+- **Secure Authentication**: Clerk handles all user authentication securely
+- **Data Encryption**: All data is encrypted in transit and at rest via Convex
+- **User Ownership**: Users have full control over their personal health data
+- **Privacy First**: No data sharing with third parties
+
+## 📊 Data Structure
+
+The app currently tracks these manually entered data points:
+
+- **Cycles**: Start dates and durations for menstrual periods
+- **Daily Entries**: 
+  - **Flow Intensity**: None, Light, Medium, Heavy
+  - **Mood**: Great (😊), Good (🙂), Okay (😐), Low (😔), Irritable (😤) 
+  - **Energy Level**: High, Medium, Low (with color indicators)
+  - **Sleep Hours**: 3-12 hours using an interactive slider
+  - **Symptoms**: Multi-select from 10 common symptoms (Cramps, Bloating, Headache, etc.)
+  - **Personal Notes**: Free-form text for additional observations
+
+## 🚀 Getting Started
+
+The easiest way to explore Kira is through our **[Live Demo](https://kiira.netlify.app)**. Simply:
+
+1. Visit the live demo link
+2. Sign up with your email or use social login
+3. Start tracking your cycle data immediately
+4. Explore the insights dashboard to see your patterns
+
+## 💻 Local Development Setup
+
+To run Kira locally on your machine:
+
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+- **Git**
+
+### Installation Steps
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd Kira
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root directory:
+   ```env
+   VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   VITE_CONVEX_URL=your_convex_deployment_url
+   ```
+
+4. **Set up Convex (Backend)**:
+   ```bash
+   npx convex dev
+   ```
+
+5. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**:
+   Navigate to `http://localhost:5173` to see the app
+
+## 🌟 Future Enhancements
+
+- **AI-Powered Insights**: Predictive analytics for cycle forecasting and pattern recognition
+- **Smart Reminders**: Personalized notifications based on cycle patterns
+- **Export Functionality**: PDF reports for medical appointments
+- **Integration**: Connect with fitness trackers and health apps for automatic sleep/activity data
+- **Community Features**: Anonymous insights and support (optional)
+
+## 🤝 Contributing
+
+This project is part of a technical assessment. For questions or feedback, please reach out directly.
+
+## 📄 License
+
+This project is created for evaluation purposes.
+
+---
+
+**Built with ❤️ for women's health awareness and empowerment.**

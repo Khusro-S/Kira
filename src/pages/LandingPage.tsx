@@ -11,7 +11,9 @@ export default function LandingPage() {
       <header className="px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <span className="font-bold text-2xl text-pink-500">Kira</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Kira
+            </span>
           </div>
           <nav className="min-w-[120px] flex justify-end">
             <SignedIn>
@@ -88,7 +90,11 @@ export default function LandingPage() {
       <section className="px-6 py-16 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Why Choose Kira?
+            Why Choose{" "}
+            <span className="font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Kira
+            </span>
+            ?
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -137,8 +143,8 @@ export default function LandingPage() {
                 Smart Predictions
               </h3>
               <p className="text-gray-600">
-                Get accurate predictions for your next period and fertile
-                windows based on your personal data.
+                Get accurate predictions for your next period based on your
+                personal data.
               </p>
             </div>
 
@@ -213,7 +219,9 @@ export default function LandingPage() {
       <footer className="px-6 py-8 bg-gradient-to-br from-pink-50 to-purple-50">
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <span className="font-bold text-lg text-pink-500">Kira</span>
+            <span className="font-bold text-lg bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Kira
+            </span>
             <div className="h-1 w-1 bg-gray-400"></div>
             <p className="text-gray-400">
               Empowering women through cycle awareness and health insights.
