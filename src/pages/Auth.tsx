@@ -61,7 +61,9 @@ export default function Auth() {
             {/* <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">K</span>
             </div> */}
-            <span className="font-bold text-2xl text-pink-500">Kira</span>
+            <span className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Kira
+            </span>
           </Link>
         </div>
       </header>

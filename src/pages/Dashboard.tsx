@@ -27,7 +27,11 @@ export default function Dashboard() {
                   <span className="text-white font-bold text-sm">K</span>
                 </div> */}
                 <h1 className="text-xl font-bold text-gray-900">
-                  Welcome, {user?.firstName || "User"}!
+                  Welcome,{" "}
+                  <span className="font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                    {user?.firstName || "User"}
+                  </span>
+                  !
                 </h1>
               </div>
               <UserButton
@@ -47,7 +51,7 @@ export default function Dashboard() {
 
           {/* Main Dashboard Content */}
           <main className="max-w-7xl mx-auto px-6 py-4">
-            <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+            <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">
                   Your Kira Dashboard
@@ -62,20 +66,20 @@ export default function Dashboard() {
                 <div className="flex space-x-1 bg-gray-50 p-1 rounded-xl">
                   <button
                     onClick={() => setActiveTab("calendar")}
-                    className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 flex gap-x-2 justify-center items-center ${
                       activeTab === "calendar"
                         ? "bg-pink-500 text-white shadow-sm"
-                        : "text-gray-600 hover:text-gray-900"
+                        : "text-gray-600 hover:text-pink-500 hover:bg-gray-200"
                     }`}
                   >
                     📅 Calendar
                   </button>
                   <button
                     onClick={() => setActiveTab("insights")}
-                    className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    className={`max-md:flex-1 px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200  ${
                       activeTab === "insights"
                         ? "bg-pink-500 text-white shadow-sm"
-                        : "text-gray-600 hover:text-gray-900"
+                        : "text-gray-600 hover:text-pink-500 hover:bg-gray-200"
                     }`}
                   >
                     📊 Insights

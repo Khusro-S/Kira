@@ -72,19 +72,19 @@ export default function TimeRangeSelector({
           <button
             key={range.key}
             onClick={() => onRangeChange(range.key)}
-            className={`flex-grow-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+            className={`flex-grow-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group ${
               selectedRange === range.key
                 ? "bg-pink-500 text-white shadow-lg"
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-pink-500"
             }`}
           >
             <div className="text-center">
               <div>{range.label}</div>
               <div
-                className={`text-xs ${
+                className={`text-xs  ${
                   selectedRange === range.key
                     ? "text-pink-100"
-                    : "text-gray-500"
+                    : "text-gray-500 group-hover:text-pink-500"
                 }`}
               >
                 {range.description}
