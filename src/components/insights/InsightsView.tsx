@@ -42,6 +42,7 @@ export default function InsightsView() {
   };
 
   const rangeData = getDataForRange(selectedRange);
+  const hasAnyData = dailyData && dailyData.length > 0;
 
   // Generate insights based on data
   useEffect(() => {
@@ -127,14 +128,14 @@ export default function InsightsView() {
         <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
           Your Health Insights
         </h1>
-        {rangeData.length !== 0 && (
+        {hasAnyData && rangeData.length > 0 && (
           <p className="text-sm sm:text-base text-gray-600">
             Based on your last {rangeData.length} days of tracking
           </p>
         )}
       </div>
 
-      {rangeData.length === 0 ? (
+      {!hasAnyData ? (
         <div className="text-center py-8 sm:py-12">
           <div className="text-5xl sm:text-6xl mb-4">📊</div>
           <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2">
@@ -152,14 +153,30 @@ export default function InsightsView() {
             onRangeChange={setSelectedRange}
           />
 
-          {/* Charts */}
-          <TrendsChart data={rangeData} />
-          <SleepChart data={rangeData} />
-          <SymptomsChart data={rangeData} />
-          <CycleOverview data={rangeData} />
+          {rangeData.length === 0 ? (
+            <div className="text-center py-8 sm:py-12">
+              <div className="text-4xl sm:text-5xl mb-4">📅</div>
+              <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2">
+                No Data in This Period
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 px-4">
+                You have health data, but none in the selected time range. Try
+                selecting a different time range or start tracking more
+                regularly!
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Charts */}
+              <TrendsChart data={rangeData} />
+              <SleepChart data={rangeData} />
+              <SymptomsChart data={rangeData} />
+              <CycleOverview data={rangeData} />
 
-          {/* Personal Insights */}
-          <PersonalInsights insights={insights} />
+              {/* Personal Insights */}
+              <PersonalInsights insights={insights} />
+            </>
+          )}
         </div>
       )}
     </div>
