@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useConvexAuth } from "convex/react";
+import { UserButton, SignedIn, SignedOut } from "@clerk/clerk-react";
 import DemoCalendarView from "../components/DemoCalendarView";
 import DemoInsightsView from "../components/insights/DemoInsightsView";
 
@@ -17,6 +19,7 @@ export interface DemoData {
 }
 
 export default function Demo() {
+  const { isAuthenticated } = useConvexAuth();
   const [activeTab, setActiveTab] = useState<"calendar" | "insights">(
     "calendar"
   );
@@ -130,16 +133,38 @@ export default function Demo() {
               </span>
             </h1>
           </div>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-x-4">
             <div className="px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-100 text-purple-700 text-xs sm:text-sm font-medium rounded-full">
               Read-Only Demo
             </div>
-            <Link
-              to="/auth"
-              className="w-full sm:w-auto text-center px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white text-sm font-semibold rounded-lg transition-colors"
-            >
-              Sign Up to Track Your Data
-            </Link>
+            <SignedIn>
+              <Link
+                to="/"
+                className="w-full sm:w-auto text-center px-4 py-2 bg-white text-pink-500 border border-pink-200 hover:bg-pink-500 hover:text-white text-sm font-semibold rounded-lg transition-colors"
+              >
+                Go to Dashboard
+              </Link>
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: "w-10 h-10",
+                    userButtonPopoverCard: "rounded-2xl shadow-2xl border-0",
+                    userButtonPopoverActionButton: "hover:bg-pink-50",
+                  },
+                  variables: {
+                    colorPrimary: "#ec4899",
+                  },
+                }}
+              />
+            </SignedIn>
+            <SignedOut>
+              <Link
+                to="/auth"
+                className="w-full sm:w-auto text-center px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white text-sm font-semibold rounded-lg transition-colors"
+              >
+                Sign Up To Track Your Data
+              </Link>
+            </SignedOut>
           </div>
         </div>
       </header>
@@ -153,19 +178,33 @@ export default function Demo() {
             </h2>
             <p className="text-gray-600">
               {dataMetadata.totalEntries > 0 ? (
-                <>
-                  Viewing <strong>one user per month</strong> across{" "}
-                  <strong>
-                    {loadedMonths.size} of {availableMonths.length} months
-                    loaded
-                  </strong>
-                  . Full dataset contains{" "}
-                  <strong>
-                    {dataMetadata.totalEntries.toLocaleString()} entries
-                  </strong>{" "}
-                  from <strong>{dataMetadata.uniqueUsers} users</strong>. Sign
-                  up to track your own cycle!
-                </>
+                <div>
+                  <p>
+                    Viewing <strong>one user per month</strong> across{" "}
+                    <strong>
+                      {loadedMonths.size} of {availableMonths.length} months
+                      loaded
+                    </strong>
+                    . Full dataset contains{" "}
+                    <strong>
+                      {dataMetadata.totalEntries.toLocaleString()} entries
+                    </strong>{" "}
+                    from <strong>{dataMetadata.uniqueUsers} users</strong>.
+                  </p>
+                  <a
+                    href="https://github.com/Khusro-S/Kira-Data-Processing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-pink-600 hover:underline ml-1"
+                  >
+                    Learn more about this data.
+                  </a>
+                  <p className="block mt-1">
+                    {isAuthenticated
+                      ? "You can view your own data in the dashboard."
+                      : "Sign up to track your own cycle!"}
+                  </p>
+                </div>
               ) : (
                 "Explore the features with sample data. Sign up to track your own cycle!"
               )}

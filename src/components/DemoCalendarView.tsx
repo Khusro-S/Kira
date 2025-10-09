@@ -186,7 +186,7 @@ export default function DemoCalendarView({
         <p className="text-gray-600 mb-4">
           {dataMetadata.dateRange ? (
             <>
-              Viewing <strong>one user's data per month</strong> from{" "}
+              Viewing data per month from{" "}
               {dataMetadata.dateRange.min.toLocaleDateString("en-US", {
                 month: "short",
                 year: "numeric",
@@ -196,12 +196,7 @@ export default function DemoCalendarView({
                 month: "short",
                 year: "numeric",
               })}
-              . Dataset contains{" "}
-              <strong>
-                {dataMetadata.totalEntries.toLocaleString()} entries
-              </strong>{" "}
-              from <strong>{dataMetadata.uniqueUsers} users</strong> (read-only
-              demo)
+              . (read-only demo)
             </>
           ) : (
             "Loading demo data..."
