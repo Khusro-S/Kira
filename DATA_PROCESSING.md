@@ -29,7 +29,7 @@ The data processing was done using a Jupyter notebook with Python, Pandas, and N
 
 The data processing code is maintained in a separate repository:
 
-**📁 Repository**: [kira-data-processing](https://github.com/Khusro-S/kira-data-processing) _(update with actual link)_
+**📁 Repository**: [kira-data-processing](https://github.com/Khusro-S/kira-data-processing)
 
 ### Processing Steps
 
