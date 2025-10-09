@@ -58,11 +58,11 @@ export default function LandingPage() {
             informed decisions about your health, lifestyle, and wellbeing.
           </p>
 
-          <div className="min-h-[72px] flex items-center justify-center">
+          <div className="min-h-[72px] flex flex-col items-center justify-center gap-4">
             {!isLoaded ? (
               <div className="w-56 h-16 bg-pink-300 rounded-lg animate-pulse"></div>
             ) : (
-              <div className="animate-fade-in">
+              <div className="animate-fade-in flex flex-col sm:flex-row gap-4">
                 <SignedOut>
                   <Link
                     to="/auth"
@@ -80,6 +80,13 @@ export default function LandingPage() {
                     Go to Dashboard
                   </Link>
                 </SignedIn>
+
+                <Link
+                  to="/demo"
+                  className="inline-block bg-white border-2 border-pink-500 text-pink-500 hover:bg-pink-50 font-semibold px-8 py-4 rounded-lg text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                >
+                  View Demo
+                </Link>
               </div>
             )}
           </div>

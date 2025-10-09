@@ -1,0 +1,77 @@
+[
+  {
+    "userId": "360",
+    "date": "2009-08-27",
+    "flow": "medium",
+    "mood": "low",
+    "energy": "low",
+    "sleep": 8.1,
+    "symptoms": [
+      "bloating",
+      "back_pain",
+      "nausea"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 1
+  },
+  {
+    "userId": "360",
+    "date": "2009-08-28",
+    "flow": "heavy",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 9.0,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 2
+  },
+  {
+    "userId": "360",
+    "date": "2009-08-29",
+    "flow": "light",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 7.7,
+    "symptoms": [
+      "cramps",
+      "back_pain"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 3
+  },
+  {
+    "userId": "360",
+    "date": "2009-08-30",
+    "flow": "light",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 7.1,
+    "symptoms": [
+      "cramps",
+      "bloating",
+      "nausea"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 4
+  },
+  {
+    "userId": "360",
+    "date": "2009-08-31",
+    "flow": "none",
+    "mood": "low",
+    "energy": "low",
+    "sleep": 8.0,
+    "symptoms": [
+      "bloating",
+      "fatigue",
+      "nausea"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 5
+  }
+]

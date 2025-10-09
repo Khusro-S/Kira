@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-100 flex items-center justify-center px-4">
-      <div className="max-w-lg w-full text-center">
+    <div className="h-screen bg-gradient-to-br from-pink-50 to-purple-100 flex flex-col items-center justify-between px-4">
+      <div className="h-full flex flex-col items-center justify-center px-4 max-w-lg w-full text-center">
         {/* 404 Illustration */}
-        <div className="mb-8">
+        <div className="">
           <div className="text-9xl font-bold bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent mb-4">
             404
           </div>
@@ -41,16 +41,16 @@ export default function NotFound() {
             Go Back
           </button>
         </div>
-
-        {/* Footer */}
-        <div className="my-8 absolute bottom-0 right-0 left-0">
-          <div className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-            Kira
-          </div>
-          <p className="text-xs text-gray-400 mt-1">
-            Empowering women through health awareness
-          </p>
-        </div>
+      </div>
+      {/* Footer */}
+      <div className="w-full max-sm:flex-col flex items-center justify-center space-x-2 my-4 text-center">
+        <span className="font-bold text-lg bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+          Kira
+        </span>
+        <div className="max-sm:hidden h-4 w-px bg-gray-300"></div>
+        <p className="text-gray-400">
+          Empowering women through cycle awareness and health insights.
+        </p>
       </div>
     </div>
   );

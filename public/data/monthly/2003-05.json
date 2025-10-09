@@ -1,0 +1,214 @@
+[
+  {
+    "userId": "5",
+    "date": "2003-05-16",
+    "flow": "medium",
+    "mood": "okay",
+    "energy": "medium",
+    "sleep": 8.6,
+    "symptoms": [
+      "bloating"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 1
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-17",
+    "flow": "heavy",
+    "mood": "irritable",
+    "energy": "low",
+    "sleep": 7.4,
+    "symptoms": [
+      "cramps",
+      "bloating",
+      "fatigue",
+      "nausea"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 2
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-18",
+    "flow": "medium",
+    "mood": "irritable",
+    "energy": "low",
+    "sleep": 8.3,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 3
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-19",
+    "flow": "medium",
+    "mood": "low",
+    "energy": "medium",
+    "sleep": 8.6,
+    "symptoms": [
+      "cramps"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 4
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-20",
+    "flow": "none",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 8.9,
+    "symptoms": [
+      "cramps",
+      "bloating",
+      "fatigue"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 5
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-21",
+    "flow": "light",
+    "mood": "low",
+    "energy": "medium",
+    "sleep": 7.2,
+    "symptoms": [
+      "cramps",
+      "back_pain"
+    ],
+    "notes": null,
+    "isPeriod": true,
+    "dayOfCycle": 6
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-22",
+    "flow": "none",
+    "mood": "good",
+    "energy": "high",
+    "sleep": 6.1,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 7
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-23",
+    "flow": "none",
+    "mood": "good",
+    "energy": "medium",
+    "sleep": 7.5,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 8
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-24",
+    "flow": "none",
+    "mood": "great",
+    "energy": "high",
+    "sleep": 8.1,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 9
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-25",
+    "flow": "none",
+    "mood": "okay",
+    "energy": "high",
+    "sleep": 8.5,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 10
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-26",
+    "flow": "none",
+    "mood": "good",
+    "energy": "high",
+    "sleep": 7.4,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 11
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-27",
+    "flow": "none",
+    "mood": "great",
+    "energy": "medium",
+    "sleep": 8.3,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 12
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-28",
+    "flow": "none",
+    "mood": "great",
+    "energy": "medium",
+    "sleep": 7.7,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 13
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-29",
+    "flow": "none",
+    "mood": "great",
+    "energy": "high",
+    "sleep": 8.5,
+    "symptoms": [
+      "bloating"
+    ],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 14
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-30",
+    "flow": "none",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 8.2,
+    "symptoms": [],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 15
+  },
+  {
+    "userId": "5",
+    "date": "2003-05-31",
+    "flow": "none",
+    "mood": "okay",
+    "energy": "low",
+    "sleep": 6.2,
+    "symptoms": [
+      "bloating"
+    ],
+    "notes": null,
+    "isPeriod": false,
+    "dayOfCycle": 16
+  }
+]

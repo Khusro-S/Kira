@@ -25,3 +25,10 @@ dist-ssr
 
 # Ignore all .env files
 *.env
+
+# Data processing files (not needed in frontend repo)
+*.csv
+*.ipynb
+*.ipynb_checkpoints/
+__pycache__/
+*.pyc

@@ -10,6 +10,7 @@ import { useConvexAuth } from "convex/react";
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
+import Demo from "./pages/Demo";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
 
@@ -34,6 +35,7 @@ function App() {
           element={isAuthenticated ? <Dashboard /> : <Navigate to="/auth" />}
           errorElement={<ErrorPage />}
         />
+        <Route path="/demo" element={<Demo />} errorElement={<ErrorPage />} />
         {/* Catch-all route for 404 */}
         <Route path="*" element={<NotFound />} />
       </>

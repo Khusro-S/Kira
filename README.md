@@ -174,6 +174,22 @@ To run Kira locally on your machine:
 6. **Open your browser**:
    Navigate to `http://localhost:5173` to see the app
 
+## 📊 Demo Data
+
+The demo uses pre-processed menstrual cycle data for demonstration purposes:
+- **Location**: `/public/data/monthly/` (167 monthly JSON files)
+- **Date Range**: 1990-2012
+- **Total Entries**: 4,989 daily tracking records
+- **Users**: One user per month for simplified demo
+
+### Data Processing
+
+The demo data was generated from raw cycle data and enhanced with synthetic health metrics. 
+
+**For details, see**: [`DATA_PROCESSING.md`](DATA_PROCESSING.md)
+
+**Data processing code**: [kira-data-processing](https://github.com/Khusro-S/kira-data-processing) *(separate repository)*
+
 ## 🤝 Contributing
 
 This project is part of a technical assessment. For questions or feedback, please reach out directly.
